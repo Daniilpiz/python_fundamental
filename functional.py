@@ -51,3 +51,30 @@ evens: Iterable[int] = (x for x in range(10) if x%2==0)
 
 
 triple: Tuple[int, float, int] = (10, 2.5, 3)
+
+
+#визуализация данных
+
+from matplotlib import pyplot as plt
+
+#линейная диаграмма
+years = [1950, 1960, 1970, 1980, 1990, 2000, 2010]
+gdp = [300.2, 543.3, 1075.9, 2862.5, 5979.6, 10289.7, 14958.3]
+
+plt.plot(years, gdp, color = "green", marker = 'o', linestyle = 'solid')
+plt.title("Номинальный ВВП")
+
+plt.ylabel("Млрд долларов")
+plt.show()
+
+#столбчатая диаграмма 
+
+movies = ["Филм1", "Фильм2", "Фильм3", "Фильм4", "Фильм5"]
+num_oscras = [5, 11, 3, 8, 10]
+
+plt.bar(range(len(movies)), num_oscras)
+plt.title("Крутые фильмы")
+
+plt.ylabel("Количество наград")
+plt.xticks(range(len(movies)), movies)
+plt.show()

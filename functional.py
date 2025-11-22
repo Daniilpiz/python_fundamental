@@ -1,6 +1,6 @@
 # функция zip
 
-from typing import List
+from typing import List, Optional, Dict, Iterable, Tuple
 
 
 list1 = ['a', 'b', 'c']
@@ -41,4 +41,13 @@ assert other_way_magic(*x_y_list, **z_dict) == 6, "1+2+3 должно БЫТЬ �
 def total(xs:List[int]) -> float:
     return sum(xs)
 
+values:List[int] = []
+best_so_far: Optional[float] = None
 
+
+counts:Dict[str, int] = {"a":1, "b":2}
+
+evens: Iterable[int] = (x for x in range(10) if x%2==0)
+
+
+triple: Tuple[int, float, int] = (10, 2.5, 3)

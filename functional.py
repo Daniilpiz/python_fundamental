@@ -78,3 +78,68 @@ plt.title("Крутые фильмы")
 plt.ylabel("Количество наград")
 plt.xticks(range(len(movies)), movies)
 plt.show()
+
+#гистограмма
+
+from collections import Counter
+grades = [83, 95, 91, 87, 70, 0, 85, 82, 100, 67, 73, 77, 0]
+
+#Cгруппировать все оценки подецильно, но разместить 100 вместе с отметками по 90 и выше
+
+histogram = Counter(min(grade// 10*10, 90) for grade in grades)
+
+plt.bar([x+5 for x in histogram.keys()], histogram.values(), 10, edgecolor = (0, 0, 0))
+'''
+сдвинуть столбец влево на 5
+каждому столбцу ширина 10
+чёрные края для каждого столбца
+'''
+
+plt.axis([-5, 105, 0, 5]) #метки по Ох от -5 до 15, по Оу от 0 до 5
+
+plt.xticks([10*i for i in range(11)]) #Метки по оси x от 0, 10 ... 100
+plt.xlabel("Дециль")
+plt.ylabel("Число студентов")
+
+plt.title("Распределение оценок за экзамен")
+plt.show()
+
+#линейные графики
+
+variance = [2**i for i in range(9)]
+bias_squared = variance.copy()[::-1]
+total_error = [x+y for x, y in zip(variance, bias_squared)]
+
+xs = [i for i, _ in enumerate(variance)]
+
+plt.plot(xs, variance, 'g-', label = 'дисперсия')
+plt.plot(xs, bias_squared, 'r-', label = 'смещение^2')
+plt.plot(xs, total_error, 'b:', label = 'cуммарная ошибка')
+
+plt.legend(loc = 9)
+
+plt.xlabel('Сложность модели')
+plt.title("компромис между смещением и дисперсией")
+
+plt.show()
+
+#диаграммы рассеяния
+
+friends = [70, 65, 72, 63, 71, 64, 60, 64, 67]
+minutes = [175, 170, 205, 120, 220, 130, 105, 145, 190]
+labels = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
+
+plt.scatter(friends, minutes)
+
+for label, friend_count, minute_count in zip(labels, friends, minutes):
+    plt.annotate(label,
+                 xy = (friend_count, minute_count),
+                 xytext= (5, -5),
+                 textcoords='offset points')
+
+
+plt.title("число минут против числа друзей")
+plt.xlabel("число друзей")
+plt.ylabel("число минутб проводимых на сайте еждневно")
+
+plt.show()

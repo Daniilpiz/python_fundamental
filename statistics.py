@@ -1,6 +1,8 @@
 from typing import List
 from collections import Counter
 
+from linal import sum_of_squares
+import math
 
 # cреднее арифметическое
 def mean(xs: List[int]) -> float:
@@ -35,8 +37,7 @@ def mode(xs:List[float])->float:
 
     return [x_i for x_i, count in counts.items() if count == max_count]
 
-from linal import sum_of_squares
-
+# дисперсия
 def de_mean(xs:List[float])->List[float]:
     x_bar = mean(xs)
     return [x-x_bar for x in xs]
@@ -49,3 +50,11 @@ def variance(xs: List[float])->float:
     deviations = de_mean(xs)
 
     return sum_of_squares(deviations)/(n-1)
+
+
+def standard_deviation(xs:List[float]) -> float:
+    return math.sqrt(variance(xs))
+
+#интерквартильный размах(не подвержен выбросам, в отличии от стандартного отклонения и размаха)
+def interquartile_range(xs:List[float]) -> float:
+    return quantile(xs,0.75)-quantile(xs, 0.25)

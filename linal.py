@@ -66,14 +66,14 @@ def dot(v:Vector, w: Vector) -> Vector:
 assert dot([1, 2, 3], [4, 5, 6]) == 32, "Такого быть не может"
 
 
-#cумма квадратов
+#cумма квадратов вектора
 def sum_of_squares(v:Vector)->float:
     return dot(v, v)
 
 assert sum_of_squares([1,2,3])==14
 
 import math
-
+#магнитуда она же длина вектора
 def magnitude(v:Vector)->float:
     return math.sqrt(sum_of_squares(v))
 

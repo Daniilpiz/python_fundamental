@@ -1,4 +1,5 @@
 from typing import List
+from collections import Counter
 
 
 # cреднее арифметическое
@@ -27,3 +28,24 @@ def quantile(xs:List[float], p:float)->float:
 
     return sorted(xs)[p_index]
 
+#мода
+def mode(xs:List[float])->float:
+    counts = Counter(xs)
+    max_count = max(counts.values())
+
+    return [x_i for x_i, count in counts.items() if count == max_count]
+
+from linal import sum_of_squares
+
+def de_mean(xs:List[float])->List[float]:
+    x_bar = mean(xs)
+    return [x-x_bar for x in xs]
+
+
+def variance(xs: List[float])->float:
+    assert len(xs)>=2, "дисперсия требует 2-х и больше элементов"
+
+    n = len(xs)
+    deviations = de_mean(xs)
+
+    return sum_of_squares(deviations)/(n-1)

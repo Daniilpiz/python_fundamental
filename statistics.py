@@ -104,10 +104,10 @@ def correlation(xs: List[float], ys: List[float]) -> float:
 assert 0.24 < correlation(num_friends, daily_minutes) < 0.25
 assert 0.24 < correlation(num_friends, daily_hours) < 0.25
 
-plt.scatter(num_friends, daily_minutes)
+plt.scatter(num_friends, daily_minutes, color = "red", marker='d')
 plt.xlabel("число друзей")
 plt.ylabel("число минутб проводимых на сайте еждневно")
-plt.show()
+
 
 outlier = num_friends.index(100)    # index of outlier
 
@@ -125,6 +125,6 @@ assert 0.57 < correlation(num_friends_good, daily_minutes_good) < 0.58
 assert 0.57 < correlation(num_friends_good, daily_hours_good) < 0.58
 
 plt.scatter(num_friends_good, daily_minutes_good)
-plt.xlabel("число друзей")
-plt.ylabel("число минутб проводимых на сайте еждневно")
+# plt.xlabel("число друзей")
+# plt.ylabel("число минутб проводимых на сайте еждневно")
 plt.show()

@@ -1,7 +1,7 @@
 import math
 import matplotlib.pyplot as plt
 import random
-
+from collections import Counter
 #кумулятивная функция распределения
 def uniform_cdf(x:float) -> float:
     if x<0: return 0
@@ -71,5 +71,36 @@ plt.plot(xs, [inverse_normal_cdf(x, sigma = 0.5, mu = 0) for x in xs],'--', labe
 plt.plot(xs, [inverse_normal_cdf(x, sigma = 1, mu= -1) for x in xs],':', label = 'мю = -1, cигма = 1',color = 'black')
 
 plt.legend(loc = 4)
-plt.title("Различные инвертированные нормальные кумулятивные функции")
+plt.title("Различные инвертированные нормальные кумулятивные функции\n(приближённые значения)")
 plt.show()
+
+
+#биномиальная случайная величина
+def bernoulli_trial(p:float)->int:
+    return 1 if random.random() < p else 0
+
+
+def binomial(n: int, p:float) ->int:
+    return sum(bernoulli_trial(p) for _ in range(n))
+
+
+def binomial_histogram(p:float, n:int, num_points: int) -> None:
+    data = [binomial(n, p) for _ in range(num_points)]
+
+    histogram = Counter(data)
+
+    plt.bar([x - 0.4 for x in histogram.keys()], 
+            [v/num_points for v in histogram.values()], 0.8, color = '0.75')
+    
+    mu = n*p
+    q = 1-p
+    sigma = math.sqrt(n*p*q)
+    
+    xs = range(min(data), max(data)+1)
+    ys = [normal_cdf(i+0.5, mu, sigma) - normal_cdf(i-0.5, mu, sigma) for i in xs]
+
+    plt.plot(xs, ys)
+    plt.title("Биномиальное распределение и его нормальное приближение")
+    plt.show()
+
+binomial_histogram(0.75, 100, 10000)

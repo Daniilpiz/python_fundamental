@@ -104,3 +104,4 @@ def binomial_histogram(p:float, n:int, num_points: int) -> None:
     plt.show()
 
 binomial_histogram(0.75, 100, 10000)
+
